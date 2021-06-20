@@ -1,14 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+interface AppState {
+  value : string;
+}
+
+class App extends Component<{}, AppState> {
+
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            value : ""
+        }
+    }
+
+    testData = async () => {
+        let response = await fetch("http://192.168.0.7:4567/searchMovies");
+        if (!response.ok) {
+            alert("BAD");
+            return;
+        }
+        let parsed = await response.json();
+        this.setState({
+            value : parsed.results[0].title
+        })
+    }
+
+    reset = () => {
+        this.setState({
+            value : ""
+        })
+    }
+
+    render () {
+        return (
+            <View style={styles.container}>
+                <Text>Text: {this.state.value}</Text>
+                <Button onPress={this.testData} title={"recommend"}/>
+                <Button onPress={this.reset} title={"reset"}/>
+                <StatusBar style="auto" />
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -19,3 +53,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
