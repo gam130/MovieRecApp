@@ -8,8 +8,8 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
-node_modules/
-.expo/
+**/node_modules/
+**/.expo/
 npm-debug.*
 *.jks
 *.p8
@@ -17,4 +17,4 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
+**/web-build/
