@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import BottomNavBar from "./BottomNavBar";
 
 interface AppState {
   value : string;
@@ -35,12 +36,8 @@ class App extends Component<{}, AppState> {
 
     render () {
         return (
-            <View style={styles.container}>
-                <Text>Text: {this.state.value}</Text>
-                <Button onPress={this.testData} title={"recommend"}/>
-                <Button onPress={this.reset} title={"reset"}/>
-                <StatusBar style="auto" />
-            </View>
+                <BottomNavBar />
+
         );
     }
 }
