@@ -36,8 +36,7 @@ class App extends Component<{}, AppState> {
 
     render () {
         return (
-                <BottomNavBar />
-
+            <BottomNavBar />
         );
     }
 }
